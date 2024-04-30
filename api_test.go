@@ -32,5 +32,5 @@ var _ = Describe("client", func() {
 			_, err := clientset.CoreV1().Namespaces().Get(context.TODO(), "twilio-system", metav1.GetOptions{})
 			Expect(err).To(BeNil())
 		})
-	}
+	})
 })
