@@ -18,7 +18,7 @@ var _ = Describe("client", func() {
 			config, _ := rest.InClusterConfig()
 			// creates the clientset
 			clientset, _ := kubernetes.NewForConfig(config)
-			_, err := clientset.CoreV1().Namespaces().List(context.TODO(), metav1.ListOptions{})
+			_, err := clientset.CoreV1().Pods("default").List(context.TODO(), metav1.ListOptions{})
 			Expect(err).To(BeNil())
 		})
 	})
