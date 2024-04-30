@@ -22,4 +22,15 @@ var _ = Describe("client", func() {
 			Expect(err).To(BeNil())
 		})
 	})
+
+	Context("twilio-system namespace exists", func() {
+		It("returns a 200 OK response", func() {
+			// creates the in-cluster config
+			config, _ := rest.InClusterConfig()
+			// creates the clientset
+			clientset, _ := kubernetes.NewForConfig(config)
+			_, err := clientset.CoreV1().Namespaces().Get(context.TODO(), "twilio-system", metav1.GetOptions{})
+			Expect(err).To(BeNil())
+		})
+	}
 })
