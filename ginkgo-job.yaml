@@ -3,6 +3,8 @@ kind: Job
 metadata: 
   name: "{{ .Name }}"
   namespace: "{{ .Namespace }}"
+  annotations:
+    kubernetes.twilio.com/service-name: "podinfo"
 spec:
   template:
     spec:
@@ -11,3 +13,8 @@ spec:
       containers:
         - name: "{{ .Name }}"
           image: "{{ .Image }}"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
