@@ -12,9 +12,9 @@ spec:
     repository:
       authType: basic
       branch: main
-      path: tests/core
       type: git
       uri: https://github.com/rossedman/ktest.git
+      path: tests/core
     type: git
   executionRequest:
     jobTemplate: |
