@@ -57,7 +57,7 @@ kubectl testkube create test \
 	--type ginkgo/test \
 	--name ktest \
 	--git-branch main \
-	--job-template ginkgo-job.yaml \
+	--job-template hack/ginkgo-job.yaml \
 	--client direct
 
 # run ginkgo test suite
@@ -81,3 +81,26 @@ ginkgo bootstrap
 ```
 
 Followed this document [here](https://docs.testkube.io/test-types/executor-ginkgo)
+
+### KubeNoTrouble
+
+```sh
+# create executor
+kubectl testkube create executor \
+	--name kubent-executor --types kubent \
+	--image ghcr.io/doitintl/kube-no-trouble:latest \
+	--job-template ./hack/ginkgo-job.yaml \
+	--client direct
+```
+
+```sh
+# create a test
+kubectl testkube create test --name kubent-test --type kubent --client direct
+kubectl run test kubent-test --client direct
+```
+
+### Dashboard Setup
+
+```sh
+helm install 
+```

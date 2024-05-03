@@ -1,0 +1,40 @@
+apiVersion: tests.testkube.io/v3
+kind: Test
+metadata:
+  name: ktest-policy
+  namespace: twilio-system-testkube
+  labels:
+    executor: ginkgo-executor
+    test-type: ginkgo-test
+spec:
+  type: ginkgo/test
+  content:
+    repository:
+      authType: basic
+      branch: main
+      path: tests/policy
+      type: git
+      uri: https://github.com/rossedman/ktest.git
+    type: git
+  executionRequest:
+    jobTemplate: |
+      apiVersion: batch/v1
+      kind: Job
+      metadata: 
+        name: "{{ .Name }}"
+        namespace: "{{ .Namespace }}"
+        annotations:
+          kubernetes.twilio.com/service-name: "podinfo"
+      spec:
+        template:
+          spec:
+            restartPolicy: Never
+            serviceAccountName: testkube
+            containers:
+              - name: "{{ .Name }}"
+                image: "{{ .Image }}"
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                      - all
