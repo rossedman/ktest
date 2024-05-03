@@ -1,4 +1,4 @@
-module github.com/rossedman/ktest/tests/core
+module github.com/rossedman/ktest
 
 go 1.22.0
 
