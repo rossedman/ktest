@@ -21,7 +21,8 @@ helm repo add kubeshop https://kubeshop.github.io/helm-charts
 helm install \
 	--namespace twilio-system-testkube  \
 	--create-namespace \
-		testkube kubeshop/testkube
+		testkube kubeshop/testkube \
+			--set testkube-api.prometheus.enabled=true
 ```
 
 Once complete let's open a local port and allow communication to the testkube api server

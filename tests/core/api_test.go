@@ -1,4 +1,4 @@
-package ktest_test
+package core_test
 
 import (
 	"context"

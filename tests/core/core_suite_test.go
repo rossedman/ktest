@@ -1,4 +1,4 @@
-package ktest_test
+package core_test
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestKtest(t *testing.T) {
+func TestCore(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Ktest Suite")
+	RunSpecs(t, "OTK Core Suite")
 }
